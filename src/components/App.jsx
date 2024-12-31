@@ -1,8 +1,6 @@
-import React from 'react';
-import { react } from '@babel/types';
-import Quotes from './Quotes';
 import Timer from './Timer';
-import './App.css';
+import Quotes from './Quotes';
+import '../App.css';
 
 function App() {
   return (
@@ -10,7 +8,7 @@ function App() {
       <div className='app'>
         <header>
           <h1>AchieveIt</h1>
-          <p>Master your time, achieve it all</p>
+          <p>Master your time, Achieve it all</p>
         </header>
         <main>
           <Quotes />
