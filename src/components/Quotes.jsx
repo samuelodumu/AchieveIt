@@ -6,7 +6,7 @@ function Quotes() {
   const [quote, setQuote] = useState('');
 
   useEffect(() => {
-    fetch('https://cors-headers.herokapp.com/www.affirmations.dev/')
+    fetch('http://localhost:8080/www.affirmations.dev/')
       .then((response) => response.json())
       .then((data) => setQuote(data.affirmation))
       .catch((error) => console.error('Error fetching quote:', error));
@@ -14,8 +14,7 @@ function Quotes() {
 
   return (
     <div>
-      <h2>Inspirational Quote</h2>
-      <h3 className='bold'>{quote}</h3>
+      <p className='bold'>Session quote: {quote}</p>
     </div>
   );
 }

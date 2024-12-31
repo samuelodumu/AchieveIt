@@ -27,11 +27,13 @@ function Timer() {
   };
 
   return (
-    <div>
+    <div className='card'>
       <h2>Pomodoro Timer</h2>
-      <p>{formatTime(time)}</p>
-      <button onClick={toggleTimer}>{isRunning ? 'Pause' : 'Start'}</button>
-      <button onClick={resetTimer}>Reset</button>
+      <h1>{formatTime(time)}</h1>
+      <div style={{ justifyContent: 'space-between' }}>
+        <button onClick={toggleTimer}>{isRunning ? 'Pause' : 'Start'}</button>
+        <button onClick={resetTimer}>Reset</button>
+      </div>
     </div>
   );
 }
