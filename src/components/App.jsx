@@ -7,11 +7,17 @@ function App() {
     <>
       <div className='app'>
         <header>
-          <h1 style={{marginBottom: '0'}}>AchieveIt</h1>
-          <small>Master your time, Achieve it all.</small>
-          <hr/>
+          <h1
+            className='yeseva-one-bold'
+            style={{ marginBottom: '0' }}>
+            AchieveIt
+          </h1>
+          <small className='yeseva-one-regular'>
+            Master your time, Achieve it all.
+          </small>
+          <hr />
         </header>
-        <main>
+        <main style={{ textAlign: 'center' }}>
           <Quotes />
           <Timer />
         </main>

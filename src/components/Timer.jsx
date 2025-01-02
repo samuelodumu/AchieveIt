@@ -27,10 +27,10 @@ function Timer() {
   };
 
   return (
-    <div className='card'>
-      <h2>Pomodoro Timer</h2>
-      <h1>{formatTime(time)}</h1>
-      <div style={{ justifyContent: 'space-between' }}>
+    <div className='card py-5 px-5 mt-4' style={{ color: '#3c3c3e' , minWidth: '600px', maxWidth: '600px' }}>
+      <h5 className='pb-2'>Pomodoro Timer Short Break Long Break</h5>
+      <h1 className='fw-bold' style={{ fontSize: '7em'}}>{formatTime(time)}</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
         <button onClick={toggleTimer}>{isRunning ? 'Pause' : 'Start'}</button>
         <button onClick={resetTimer}>Reset</button>
       </div>

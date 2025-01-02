@@ -14,7 +14,7 @@ function Quotes() {
 
   return (
     <div>
-      <p className='bold'>Session quote: {quote}</p>
+      <p className='yeseva-one-regular'>Remember: {quote}</p>
     </div>
   );
 }
