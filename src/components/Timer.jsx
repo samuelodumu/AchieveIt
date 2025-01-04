@@ -28,8 +28,8 @@ function Timer() {
 
   return (
     <div className='card py-5 px-5 mt-4' style={{ color: '#3c3c3e' }}>
-      <h5 className='pb-2'>Pomodoro | Short Break | Long Break</h5>
-      <h1 className='fw-bold' style={{ fontSize: '7em'}}>{formatTime(time)}</h1>
+      <h6 className='pb-2'>Pomodoro | Short Break | Long Break</h6>
+      <h1 className='fw-bold time' style={{ fontSize: '120px'}}>{formatTime(time)}</h1>
       <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
         <button onClick={toggleTimer}>{isRunning ? 'Pause' : 'Start'}</button>
         <button onClick={resetTimer}>Reset</button>
