@@ -17,7 +17,7 @@ function App() {
           </small>
           <hr />
         </header>
-        <main style={{ placeItems: 'center' }}>
+        <main style={{ placeItems: 'center', maxWidth: '70vw' }}>
           <Quotes />
           <Timer />
         </main>
