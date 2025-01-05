@@ -24,6 +24,15 @@
   background-color: #feefdc;
 }
 
+.icons {
+  border-radius: 8px;
+  padding: 0.4em 0.5em;
+}
+
+.icons:hover {
+  background-color: #f7f1ee;
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;
