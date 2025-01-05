@@ -1,4 +1,6 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -10,27 +12,14 @@
 }
 
 .yeseva-one-regular {
-  font-family: "Yeseva One", serif;
+  font-family: 'Yeseva One', serif;
   font-weight: 400;
   font-style: normal;
 }
 
 .yeseva-one-bold {
-  font-family: "Yeseva One", serif;
+  font-family: 'Yeseva One', serif;
   font-weight: 600;
-}
-
-.card {
-  background-color: #feefdc;
-}
-
-.icons {
-  border-radius: 8px;
-  padding: 0.4em 0.5em;
-}
-
-.icons:hover {
-  background-color: #f7f1ee;
 }
 
 /* .logo {

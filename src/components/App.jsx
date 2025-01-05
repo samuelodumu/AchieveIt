@@ -2,7 +2,7 @@ import Timer from './Timer';
 import Quotes from './Quotes';
 import '../App.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faArrowRotateRight, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRotateRight, faGear, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 library.add(faArrowRotateRight, faGear);
 
 function App() {
@@ -18,7 +18,9 @@ function App() {
         </header>
         <main style={{ placeItems: 'center', maxWidth: '70vw' }}>
           <Quotes />
-          <Timer />
+          <div className='outer-div'>
+            <Timer />
+          </div>
         </main>
       </div>
     </>
