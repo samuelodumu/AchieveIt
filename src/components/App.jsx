@@ -1,11 +1,25 @@
-import Timer from './Timer';
-import Quotes from './Quotes';
-import '../App.css';
+import { useState } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowRotateRight, faGear } from '@fortawesome/free-solid-svg-icons';
 library.add(faArrowRotateRight, faGear);
+import Timer from './Timer';
+import Quotes from './Quotes';
+import '../App.css';
 
 function App() {
+  const [durations, setDurations] = useState({
+    pomodoro: 1500, // 25 minutes
+    shortBreak: 300, // 5 minutes
+    longBreak: 900 // 15 minutes
+  });
+
+  const updateDurations = (timerType, newDurations) => {
+    setDurations((prevDurations) => ({
+      ...prevDurations,
+      [timerType]: newDurations
+    }));
+  };
+
   return (
     <>
       <div className='app'>
@@ -19,7 +33,10 @@ function App() {
         <main style={{ placeItems: 'center', maxWidth: '70vw' }}>
           <Quotes />
           <div className='outer-div'>
-            <Timer />
+            <Timer
+              durations={durations}
+              updateDurations={updateDurations}
+            />
           </div>
         </main>
       </div>
