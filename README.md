@@ -8,7 +8,7 @@ AchieveIt is a time management web application that incorporates the pomodoro te
 - Motivational messages on each pomodoro cycle
 - Desktop and mobile friendly
 
-## API integration
+## API Integration
 AchieveIt uses the [affirmations API](www.affirmations.dev) to get motivational messages on each pomodoro cycle.
 
 ## Setup
@@ -42,10 +42,10 @@ Not that you need it, but this is a list of uses for AchieveIt vs what it should
 - Samuel Odumu [Github](https://github.com/samuelodumu) / [Email](themainsamuel@gmail.com)
 
 ## Contributing
-I welcome contributions to AchieveIt! If you'd like to contribute, fork this repository, create a new branch, and submit a pull request with your changes.
+I welcome contributions to AchieveIt! If you'd like to contribute, fork this repository, create a new branch, and submit a pull request with your changes. If it is merged, it your name will be added to the list of authors.
 
 ## License
-HealthPixel is licensed under the MIT License. See the LICENSE file for more information.
+AchieveIt is licensed under the MIT License. See the LICENSE file for more information.
 
 ## Contact
 For questions or support, please open an issue on GitHub or contact me at my email.
