@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowRotateRight, faGear } from '@fortawesome/free-solid-svg-icons';
 library.add(faArrowRotateRight, faGear);
-import Timer from './Timer';
 import Quotes from './Quotes';
+import Timer from './Timer';
+import Settings from './settings';
 import '../App.css';
 
 function App() {
@@ -13,11 +14,14 @@ function App() {
     longBreak: 900 // 15 minutes
   });
 
-  const updateDurations = (timerType, newDurations) => {
-    setDurations((prevDurations) => ({
-      ...prevDurations,
-      [timerType]: newDurations
-    }));
+  const [showSettings, setShowSettings] = useState(false);
+
+  const updateDurations = (newDurations) => {
+    setDurations(newDurations);
+  };
+
+  const toggleSettings = () => {
+    setShowSettings(!showSettings);
   };
 
   return (
@@ -30,13 +34,21 @@ function App() {
           </small>
           <hr />
         </header>
-        <main style={{ placeItems: 'center', maxWidth: '70vw' }}>
+        <main style={{ placeItems: 'center' }}>
           <Quotes />
           <div className='outer-div'>
             <Timer
               durations={durations}
               updateDurations={updateDurations}
+              toggleSettings={toggleSettings}
             />
+            {showSettings && (
+              <Settings
+                durations={durations}
+                updateDurations={updateDurations}
+                closeSettings={toggleSettings}
+              />
+            )}
           </div>
         </main>
       </div>

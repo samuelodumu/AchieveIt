@@ -1,15 +1,16 @@
 // logic for the pomodoro timer
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Timer({ durations, updateDurations }) {
+function Timer({ durations, toggleSettings }) {
   const [activeTimer, setActiveTimer] = useState('pomodoro');
   const [timeLeft, setTimeLeft] = useState(durations['pomodoro']);
   const [isRunning, setIsRunning] = useState(false);
+  const notificationSound = useRef(new Audio('/public/radar.mp3'));
 
   useEffect(() => {
-    setTimeLeft(durations[activeTimer]);
+    setTimeLeft(durations[activeTimer]); // display the new time when duraionos or activeTimer changes
   }, [durations, activeTimer]);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ function Timer({ durations, updateDurations }) {
       }, 1000);
     } else if (timeLeft === 0) {
       setIsRunning(false);
-      // notification sounds go here
+      notificationSound.current.play();
     }
     return () => clearInterval(timer);
   }, [isRunning, timeLeft]);
@@ -29,6 +30,8 @@ function Timer({ durations, updateDurations }) {
   const resetTimer = () => {
     setTimeLeft(durations[activeTimer]);
     setIsRunning(false);
+    notificationSound.current.pause();
+    notificationSound.current.currentTime = 0;
   };
 
   const formatTime = (seconds) => {
@@ -38,7 +41,7 @@ function Timer({ durations, updateDurations }) {
   };
 
   return (
-    <div className='card py-5 px-5 mt-4'>
+    <div className='card py-3 px-5 mt-4'>
       <div className='d-flex justify-content-center p-3 '>
         <span
           className={`timer-option px-2 h6 ${
@@ -71,7 +74,7 @@ function Timer({ durations, updateDurations }) {
             className={`secondary h6 ${
               activeTimer === 'shortBreak' ? 'active-timer' : ''
             }`}>
-            Break
+            break
           </span>
         </span>
         <span
@@ -88,7 +91,7 @@ function Timer({ durations, updateDurations }) {
             className={`secondary h6 ${
               activeTimer === 'longBreak' ? 'active-timer' : ''
             }`}>
-            Break
+            break
           </span>
         </span>
       </div>
@@ -98,7 +101,7 @@ function Timer({ durations, updateDurations }) {
         style={{
           display: 'flex',
           justifyContent: 'space-evenly',
-          padding: '20px 0'
+          padding: '15px 0'
         }}>
         <FontAwesomeIcon
           icon='fa-solid fa-arrow-rotate-right'
@@ -118,6 +121,7 @@ function Timer({ durations, updateDurations }) {
           icon='fa-solid fa-gear'
           size='2x'
           className='icons'
+          onClick={toggleSettings}
         />
       </div>
     </div>
@@ -125,7 +129,8 @@ function Timer({ durations, updateDurations }) {
 }
 Timer.propTypes = {
   durations: PropTypes.object.isRequired,
-  updateDurations: PropTypes.func.isRequired
+  updateDurations: PropTypes.func.isRequired,
+  toggleSettings: PropTypes.func.isRequired
 };
 
 export default Timer;
