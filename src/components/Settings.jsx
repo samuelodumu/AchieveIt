@@ -2,7 +2,11 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function Settings({ durations, updateDurations, closeSettings }) {
-  const [newDurations, setNewDurations] = useState(durations);
+  const [newDurations, setNewDurations] = useState({
+    pomodoro: durations.pomodoro / 60,
+    shortBreak: durations.shortBreak / 60,
+    longBreak: durations.longBreak / 60
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -13,7 +17,11 @@ function Settings({ durations, updateDurations, closeSettings }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateDurations(newDurations);
+    updateDurations({
+      pomodoro: newDurations.pomodoro * 60,
+      shortBreak: newDurations.shortBreak * 60,
+      longBreak: newDurations.longBreak * 60
+    });
     closeSettings();
   };
 

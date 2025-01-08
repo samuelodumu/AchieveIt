@@ -7,7 +7,7 @@ function Timer({ durations, toggleSettings }) {
   const [activeTimer, setActiveTimer] = useState('pomodoro');
   const [timeLeft, setTimeLeft] = useState(durations['pomodoro']);
   const [isRunning, setIsRunning] = useState(false);
-  const notificationSound = useRef(new Audio('/public/radar.mp3'));
+  const notificationSound = useRef(new Audio('/radar.mp3'));
 
   useEffect(() => {
     setTimeLeft(durations[activeTimer]); // display the new time when duraionos or activeTimer changes
