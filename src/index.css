@@ -15,10 +15,28 @@
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
   background-color: #145da0;
   color: aliceblue;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+main hr {
+  width: 100%;
+  margin: 0;
+  border-top: 1px solid #feefdc;
 }
 
 button {
@@ -70,6 +88,9 @@ button:active {
 .card {
   background-color: #feefdc;
   color: #3c3c3e;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .icons {
@@ -101,10 +122,6 @@ button:active {
   box-shadow: 0 4px 10px #444;
   width: 90%;
   max-width: 500px;
-}
-
-.settings-box h2 {
-  margin-top: 0;
 }
 
 .settings-box .timers {

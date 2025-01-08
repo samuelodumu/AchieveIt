@@ -28,8 +28,8 @@ function Settings({ durations, updateDurations, closeSettings }) {
   return (
     <div className='settings-overlay'>
       <div className='settings-box'>
-        <h2>Settings</h2>
-        <p>Set custom timer durations in seconds</p>
+        <h2 className='mt-0'>Settings</h2>
+        <p>Set custom timer durations</p>
         <form onSubmit={handleSubmit}>
           <div className='timers d-flex'>
             <div className='form-group col-md-3'>

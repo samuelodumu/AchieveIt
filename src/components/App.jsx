@@ -32,10 +32,10 @@ function App() {
           <small className='yeseva-one-regular mt-0 py-0'>
             Master your time, Achieve it all.
           </small>
-          <hr />
         </header>
-        <main style={{ placeItems: 'center' }}>
+        <main>
           <Quotes />
+          <hr />
           <div className='outer-div'>
             <Timer
               durations={durations}
