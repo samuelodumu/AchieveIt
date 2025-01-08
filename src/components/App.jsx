@@ -4,7 +4,7 @@ import { faArrowRotateRight, faGear } from '@fortawesome/free-solid-svg-icons';
 library.add(faArrowRotateRight, faGear);
 import Quotes from './Quotes';
 import Timer from './Timer';
-import Settings from './settings';
+import Settings from './Settings';
 import '../App.css';
 
 function App() {
