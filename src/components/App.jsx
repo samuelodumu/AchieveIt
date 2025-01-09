@@ -15,6 +15,7 @@ function App() {
   });
 
   const [showSettings, setShowSettings] = useState(false);
+  const [isShadowEnabled, setIsShadowEnabled] = useState(true);
 
   const updateDurations = (newDurations) => {
     setDurations(newDurations);
@@ -23,6 +24,10 @@ function App() {
   const toggleSettings = () => {
     setShowSettings(!showSettings);
   };
+
+  const toggleShadow = (isEnabled) => {
+    setIsShadowEnabled(isEnabled);
+  }
 
   return (
     <>
@@ -41,12 +46,15 @@ function App() {
               durations={durations}
               updateDurations={updateDurations}
               toggleSettings={toggleSettings}
+              isShadowEnabled={isShadowEnabled}
             />
             {showSettings && (
               <Settings
                 durations={durations}
                 updateDurations={updateDurations}
                 closeSettings={toggleSettings}
+                isShadowEnabled={isShadowEnabled}
+                toggleShadow={toggleShadow}
               />
             )}
           </div>

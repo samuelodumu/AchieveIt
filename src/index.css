@@ -82,7 +82,6 @@ button:active {
   font-size: 120px;
   font-family: monospace;
   border-radius: 10px;
-  text-shadow: 10px 10px 2px #bcbcbc;
 }
 
 .card {
@@ -115,7 +114,7 @@ button:active {
 }
 
 .settings-box {
-  background: aliceblue;
+background: aliceblue;
   color: #212d30;
   padding: 20px;
   border-radius: 10px;

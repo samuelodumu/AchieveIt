@@ -1,12 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-function Settings({ durations, updateDurations, closeSettings }) {
+function Settings({
+  durations,
+  updateDurations,
+  closeSettings,
+  isShadowEnabled,
+  toggleShadow
+}) {
   const [newDurations, setNewDurations] = useState({
     pomodoro: durations.pomodoro / 60,
     shortBreak: durations.shortBreak / 60,
     longBreak: durations.longBreak / 60
   });
+
+  const [shadowEnabled, setShadowEnabled] = useState(isShadowEnabled);
+
+  useEffect(() => {
+    setShadowEnabled(isShadowEnabled);
+  }, [isShadowEnabled]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,6 +27,7 @@ function Settings({ durations, updateDurations, closeSettings }) {
       [name]: parseInt(value, 10)
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     updateDurations({
@@ -22,6 +35,23 @@ function Settings({ durations, updateDurations, closeSettings }) {
       shortBreak: newDurations.shortBreak * 60,
       longBreak: newDurations.longBreak * 60
     });
+    toggleShadow(shadowEnabled)
+    closeSettings();
+  };
+
+  const handleShadowChange = (e) => {
+    setShadowEnabled(e.target.checked);
+  };
+
+  // let state = shadowEnabled;
+  const handleCancel = () => {
+    // Reset the state to initial values
+    setNewDurations({
+      pomodoro: durations.pomodoro / 60,
+      shortBreak: durations.shortBreak / 60,
+      longBreak: durations.longBreak / 60
+    });
+    setShadowEnabled(isShadowEnabled);
     closeSettings();
   };
 
@@ -29,7 +59,28 @@ function Settings({ durations, updateDurations, closeSettings }) {
     <div className='settings-overlay'>
       <div className='settings-box'>
         <h2 className='mt-0'>Settings</h2>
-        <p>Set custom timer durations</p>
+        <div className='form-check form-switch d-flex justify-content-between'>
+          <label className='form-check-label'>Timer shadow</label>
+          <input
+            className='form-check-input'
+            type='checkbox'
+            role='switch'
+            checked={shadowEnabled}
+            onChange={handleShadowChange}
+          />
+        </div>
+        <div className='form-check form-switch d-flex justify-content-between'>
+          <label className='form-check-label'>Auto start breaks</label>
+          <input
+            className='form-check-input'
+            type='checkbox'
+            role='switch'
+          />
+        </div>
+        <div className='d-flex py-2 justify-content-center'>
+          <hr style={{ borderTop: '2px solid #145da0', width: '20%' }} />
+        </div>
+        <p className='h6'>Set custom timer durations</p>
         <form onSubmit={handleSubmit}>
           <div className='timers d-flex'>
             <div className='form-group col-md-3'>
@@ -40,6 +91,7 @@ function Settings({ durations, updateDurations, closeSettings }) {
                 value={newDurations.pomodoro}
                 className='form-control'
                 onChange={handleChange}
+                min={1}
               />
             </div>
             <div className='form-group col-md-3'>
@@ -50,6 +102,7 @@ function Settings({ durations, updateDurations, closeSettings }) {
                 value={newDurations.shortBreak}
                 className='form-control'
                 onChange={handleChange}
+                min={1}
               />
             </div>
             <div className='form-group col-md-3'>
@@ -60,6 +113,7 @@ function Settings({ durations, updateDurations, closeSettings }) {
                 value={newDurations.longBreak}
                 className='form-control'
                 onChange={handleChange}
+                min={1}
               />
             </div>
           </div>
@@ -71,7 +125,7 @@ function Settings({ durations, updateDurations, closeSettings }) {
           <button
             type='button'
             className='btn btn-lg button mt-3'
-            onClick={closeSettings}>
+            onClick={handleCancel}>
             Cancel
           </button>
         </form>
@@ -83,7 +137,9 @@ function Settings({ durations, updateDurations, closeSettings }) {
 Settings.propTypes = {
   durations: PropTypes.object.isRequired,
   updateDurations: PropTypes.func.isRequired,
-  closeSettings: PropTypes.func.isRequired
+  closeSettings: PropTypes.func.isRequired,
+  isShadowEnabled: PropTypes.bool.isRequired,
+  toggleShadow: PropTypes.func.isRequired
 };
 
 export default Settings;

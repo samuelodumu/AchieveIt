@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Timer({ durations, toggleSettings }) {
+function Timer({ durations, toggleSettings, isShadowEnabled }) {
   const [activeTimer, setActiveTimer] = useState('pomodoro');
   const [timeLeft, setTimeLeft] = useState(durations['pomodoro']);
   const [isRunning, setIsRunning] = useState(false);
@@ -14,16 +14,16 @@ function Timer({ durations, toggleSettings }) {
   }, [durations, activeTimer]);
 
   useEffect(() => {
-    let timer;
+    let interval;
     if (isRunning && timeLeft > 0) {
-      timer = setInterval(() => {
+      interval = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
     } else if (timeLeft === 0) {
       setIsRunning(false);
       notificationSound.current.play();
     }
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, [isRunning, timeLeft]);
 
   const toggleTimer = () => setIsRunning(!isRunning);
@@ -96,7 +96,14 @@ function Timer({ durations, toggleSettings }) {
         </span>
       </div>
       {/* ======================== TIME ICON ====================== */}
-      <h1 className='fw-bold time'>{formatTime(timeLeft)}</h1>
+      <h1
+        className='fw-bold time'
+        style={{
+          textShadow: isShadowEnabled ? '10px 10px 2px #bcbcbc' : 'none'
+        }}>
+        {formatTime(timeLeft)}
+      </h1>
+      {/* ======================== TIME ICON ====================== */}
       <div
         style={{
           display: 'flex',
@@ -129,8 +136,8 @@ function Timer({ durations, toggleSettings }) {
 }
 Timer.propTypes = {
   durations: PropTypes.object.isRequired,
-  updateDurations: PropTypes.func.isRequired,
-  toggleSettings: PropTypes.func.isRequired
+  toggleSettings: PropTypes.func.isRequired,
+  isShadowEnabled: PropTypes.bool.isRequired
 };
 
 export default Timer;
