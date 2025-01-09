@@ -6,7 +6,9 @@ function Settings({
   updateDurations,
   closeSettings,
   isShadowEnabled,
-  toggleShadow
+  toggleShadow,
+  isAutoStartEnabled,
+  toggleAutoStart
 }) {
   const [newDurations, setNewDurations] = useState({
     pomodoro: durations.pomodoro / 60,
@@ -15,10 +17,12 @@ function Settings({
   });
 
   const [shadowEnabled, setShadowEnabled] = useState(isShadowEnabled);
+  const [autoStartEnabled, setAutoStartEnabled] = useState(isAutoStartEnabled);
 
   useEffect(() => {
     setShadowEnabled(isShadowEnabled);
-  }, [isShadowEnabled]);
+    setAutoStartEnabled(isAutoStartEnabled);
+  }, [isShadowEnabled, isAutoStartEnabled]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +39,8 @@ function Settings({
       shortBreak: newDurations.shortBreak * 60,
       longBreak: newDurations.longBreak * 60
     });
-    toggleShadow(shadowEnabled)
+    toggleShadow(shadowEnabled);
+    toggleAutoStart(autoStartEnabled);
     closeSettings();
   };
 
@@ -43,7 +48,10 @@ function Settings({
     setShadowEnabled(e.target.checked);
   };
 
-  // let state = shadowEnabled;
+  const handleAutoStartChange = (e) => {
+    setAutoStartEnabled(e.target.checked);
+  };
+
   const handleCancel = () => {
     // Reset the state to initial values
     setNewDurations({
@@ -52,6 +60,7 @@ function Settings({
       longBreak: durations.longBreak / 60
     });
     setShadowEnabled(isShadowEnabled);
+    setAutoStartEnabled(isAutoStartEnabled);
     closeSettings();
   };
 
@@ -59,10 +68,10 @@ function Settings({
     <div className='settings-overlay'>
       <div className='settings-box'>
         <h2 className='mt-0'>Settings</h2>
-        <div className='form-check form-switch d-flex justify-content-between'>
+        <div className='form-check form-switch d-flex justify-content-between py-2'>
           <label className='form-check-label'>Timer shadow</label>
           <input
-            className='form-check-input'
+            className='form-check-input bigger'
             type='checkbox'
             role='switch'
             checked={shadowEnabled}
@@ -72,9 +81,11 @@ function Settings({
         <div className='form-check form-switch d-flex justify-content-between'>
           <label className='form-check-label'>Auto start breaks</label>
           <input
-            className='form-check-input'
+            className='form-check-input bigger'
             type='checkbox'
             role='switch'
+            checked={autoStartEnabled}
+            onChange={handleAutoStartChange}
           />
         </div>
         <div className='d-flex py-2 justify-content-center'>
@@ -139,7 +150,9 @@ Settings.propTypes = {
   updateDurations: PropTypes.func.isRequired,
   closeSettings: PropTypes.func.isRequired,
   isShadowEnabled: PropTypes.bool.isRequired,
-  toggleShadow: PropTypes.func.isRequired
+  toggleShadow: PropTypes.func.isRequired,
+  isAutoStartEnabled: PropTypes.bool.isRequired,
+  toggleAutoStart: PropTypes.func.isRequired
 };
 
 export default Settings;

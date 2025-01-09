@@ -16,6 +16,7 @@ function App() {
 
   const [showSettings, setShowSettings] = useState(false);
   const [isShadowEnabled, setIsShadowEnabled] = useState(true);
+  const [isAutoStartEnabled, setIsAutoStartEnabled] = useState(true);
 
   const updateDurations = (newDurations) => {
     setDurations(newDurations);
@@ -27,7 +28,11 @@ function App() {
 
   const toggleShadow = (isEnabled) => {
     setIsShadowEnabled(isEnabled);
-  }
+  };
+
+  const toggleAutoStart = (isEnabled) => {
+    setIsAutoStartEnabled(isEnabled);
+  };
 
   return (
     <>
@@ -47,6 +52,7 @@ function App() {
               updateDurations={updateDurations}
               toggleSettings={toggleSettings}
               isShadowEnabled={isShadowEnabled}
+              isAutoStartEnabled={isAutoStartEnabled}
             />
             {showSettings && (
               <Settings
@@ -55,6 +61,8 @@ function App() {
                 closeSettings={toggleSettings}
                 isShadowEnabled={isShadowEnabled}
                 toggleShadow={toggleShadow}
+                isAutoStartEnabled={isAutoStartEnabled}
+                toggleAutoStart={toggleAutoStart}
               />
             )}
           </div>

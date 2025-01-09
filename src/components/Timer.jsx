@@ -3,14 +3,19 @@ import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Timer({ durations, toggleSettings, isShadowEnabled }) {
+function Timer({
+  durations,
+  toggleSettings,
+  isShadowEnabled,
+  isAutoStartEnabled
+}) {
   const [activeTimer, setActiveTimer] = useState('pomodoro');
   const [timeLeft, setTimeLeft] = useState(durations['pomodoro']);
   const [isRunning, setIsRunning] = useState(false);
   const notificationSound = useRef(new Audio('/radar.mp3'));
 
   useEffect(() => {
-    setTimeLeft(durations[activeTimer]); // display the new time when duraionos or activeTimer changes
+    setTimeLeft(durations[activeTimer]); // display the new time when durations or activeTimer changes
   }, [durations, activeTimer]);
 
   useEffect(() => {
@@ -22,9 +27,40 @@ function Timer({ durations, toggleSettings, isShadowEnabled }) {
     } else if (timeLeft === 0) {
       setIsRunning(false);
       notificationSound.current.play();
+      if (isAutoStartEnabled) {
+        setTimeout(() => {
+          notificationSound.current.pause();
+          notificationSound.current.currentTime = 0;
+        }, 10000);
+        setTimeout(() => {
+          if (activeTimer === 'pomodoro') {
+            setActiveTimer('shortBreak');
+            setTimeLeft(durations['shortBreak']);
+            setIsRunning(true);
+          } else if (activeTimer === 'shortBreak') {
+            setActiveTimer('pomodoro');
+            setTimeLeft(durations['pomodoro']);
+            setIsRunning(true);
+          }
+        }, 500); // 500 milisecond delay between pomodoro and short break
+      }
     }
     return () => clearInterval(interval);
-  }, [isRunning, timeLeft]);
+  }, [isRunning, timeLeft, activeTimer, durations, isAutoStartEnabled]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (activeTimer === 'pomodoro') {
+      root.style.setProperty('--current-color', 'var(--pomodoro-color)');
+      root.style.setProperty('--button-color', 'var(--pomodoro-color)');
+    } else if (activeTimer === 'shortBreak') {
+      root.style.setProperty('--current-color', 'var(--short-break-color)');
+      root.style.setProperty('--button-color', 'var(--short-break-color)');
+    } else if (activeTimer === 'longBreak') {
+      root.style.setProperty('--current-color', 'var(--long-break-color)');
+      root.style.setProperty('--button-color', 'var(--long-break-color)');
+    }
+  }, [activeTimer]);
 
   const toggleTimer = () => setIsRunning(!isRunning);
   const resetTimer = () => {
@@ -137,7 +173,8 @@ function Timer({ durations, toggleSettings, isShadowEnabled }) {
 Timer.propTypes = {
   durations: PropTypes.object.isRequired,
   toggleSettings: PropTypes.func.isRequired,
-  isShadowEnabled: PropTypes.bool.isRequired
+  isShadowEnabled: PropTypes.bool.isRequired,
+  isAutoStartEnabled: PropTypes.bool.isRequired
 };
 
 export default Timer;

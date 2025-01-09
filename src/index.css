@@ -1,4 +1,9 @@
 :root {
+  --pomodoro-color: #145da0;
+  --short-break-color: #217351;
+  --long-break-color: #5d5491;
+  --current-color: var(--pomodoro-color);
+  --button-color: var(--pomodoro-color);
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -6,10 +11,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* color-scheme: light dark colorful;
-  color: #213547;
-  background-color: #d6bda7; */
 }
 
 body {
@@ -18,8 +19,9 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background-color: #145da0;
+  background-color: var(--current-color);
   color: aliceblue;
+  transition: background-color 1.2s;
 }
 
 main {
@@ -114,7 +116,7 @@ button:active {
 }
 
 .settings-box {
-background: aliceblue;
+  background: aliceblue;
   color: #212d30;
   padding: 20px;
   border-radius: 10px;
@@ -128,8 +130,19 @@ background: aliceblue;
 }
 
 .settings-box .button {
-  background-color: #145da0;
+  background-color: var(--button-color);
   color: aliceblue;
+  transition: backround-color 1s;
+}
+
+input.bigger {
+  transform: scale(1.5);
+}
+
+.form-check-input:checked{
+  background-color: var(--button-color) !important;
+  border: none !important;
+  transition: backround-color 1s;
 }
 
 /* Media Queries */
