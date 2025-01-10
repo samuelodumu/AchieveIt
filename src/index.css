@@ -191,6 +191,13 @@ footer {
   border-bottom: 10px solid #145da0;
 }
 
+footer hr {
+  color: #212d30;
+  margin: 0;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
 footer p {
   font-family: 'Courier New', Courier, monospace;
   font-size: larger;

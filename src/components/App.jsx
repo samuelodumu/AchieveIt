@@ -72,9 +72,9 @@ function App() {
             <h2 className='pb-2'>About AchieveIt</h2>
             <p>
               AchieveIt is a productivity app designed to help you manage your
-              time effectively. It uses the Pomodoro technique to break your work
-              into intervals, typically 25 minutes in length, separated by short
-              breaks. This method helps improve focus and productivity.
+              time effectively. It uses the Pomodoro technique to break your
+              work into intervals, typically 25 minutes in length, separated by
+              short breaks. This method helps improve focus and productivity.
             </p>
             <p>
               Customize your timer durations, enable or disable text shadow, and
@@ -91,15 +91,25 @@ function App() {
               pomodoro, from the Italian word for &apos;tomato&apos;, after the
               tomato-shaped kitchen timer that Cirillo used as a university
               student. -
-              <a href='https://en.wikipedia.org/wiki/Pomodoro_Technique' target='_blank'>
+              <a
+                href='https://en.wikipedia.org/wiki/Pomodoro_Technique'
+                target='_blank'>
                 Wikipedia
               </a>
             </p>
           </div>
         </section>
         <footer>
-          <p>Made with &lt;3 by <a href='https://x.com/SamuelOdumu' target='_blank'>Samuel Odumu</a></p>
-          <small>&copy; AchieveIt 2024</small>
+          <hr />
+          <p>
+            Made with &lt;3 by{' '}
+            <a
+              href='https://x.com/SamuelOdumu'
+              target='_blank'>
+              Samuel Odumu
+            </a>
+          </p>
+          <small>&copy; AchieveIt 2024. All Rights Reserved.</small>
         </footer>
       </div>
     </>
