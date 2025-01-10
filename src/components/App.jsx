@@ -91,14 +91,14 @@ function App() {
               pomodoro, from the Italian word for &apos;tomato&apos;, after the
               tomato-shaped kitchen timer that Cirillo used as a university
               student. -
-              <a href='https://en.wikipedia.org/wiki/Pomodoro_Technique'>
+              <a href='https://en.wikipedia.org/wiki/Pomodoro_Technique' target='_blank'>
                 Wikipedia
               </a>
             </p>
           </div>
         </section>
         <footer>
-          <p>Made with &lt;3 by <a href='https://x.com/SamuelOdumu'>Samuel Odumu</a></p>
+          <p>Made with &lt;3 by <a href='https://x.com/SamuelOdumu' target='_blank'>Samuel Odumu</a></p>
           <small>&copy; AchieveIt 2024</small>
         </footer>
       </div>
