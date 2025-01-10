@@ -30,7 +30,6 @@ main {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  flex-grow: 1;
   width: 100%;
 }
 
@@ -217,12 +216,6 @@ footer small {
   }
 }
 
-@media screen and (max-width: 450px) {
-  .outer-div {
-    padding: 0 2em;
-  }
-}
-
 @media screen and (max-width: 680px) {
   .time {
     font-size: 110px !important;
@@ -238,5 +231,14 @@ footer small {
   button {
     width: 120px;
     font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .outer-div {
+    padding: 0 2em;
+  }
+  .info-section p {
+    text-align: justify;
   }
 }
