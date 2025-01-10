@@ -109,7 +109,7 @@ function App() {
               Samuel Odumu
             </a>
           </p>
-          <small>&copy; AchieveIt 2024. All Rights Reserved.</small>
+          <small>&copy; AchieveIt 2025. All Rights Reserved.</small>
         </footer>
       </div>
     </>
