@@ -3,8 +3,8 @@ AchieveIt is a time management web application that incorporates the pomodoro te
 
 ## Features
 - User ability to alter times for Pomodoro, long and short breaks
-- Dark, light and colorful themes
 - Notification sounds at the end of each session
+- Colorful themes on each duration type
 - Motivational messages on each pomodoro cycle
 - Desktop and mobile friendly
 
