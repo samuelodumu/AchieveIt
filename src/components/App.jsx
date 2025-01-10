@@ -72,7 +72,7 @@ function App() {
             <h2 className='pb-2'>About AchieveIt</h2>
             <p>
               AchieveIt is a productivity app designed to help you manage your
-              time effectively. Use the Pomodoro technique to break your work
+              time effectively. It uses the Pomodoro technique to break your work
               into intervals, typically 25 minutes in length, separated by short
               breaks. This method helps improve focus and productivity.
             </p>
@@ -84,7 +84,7 @@ function App() {
             </p>
             <h2 className='pb-2'>About the Pomodoro Technique</h2>
             <p>
-              The Pomodoro Technique is created by Francesco Cirillo for a more
+              The Pomodoro Technique was created by Francesco Cirillo for a more
               productive way to work and study. The technique uses a timer to
               break down work into intervals, traditionally 25 minutes in
               length, separated by short breaks. Each interval is known as a
