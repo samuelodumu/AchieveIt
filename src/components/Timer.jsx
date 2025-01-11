@@ -143,7 +143,7 @@ function Timer({
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-evenly',
+          justifyContent: 'center',
           padding: '15px 0'
         }}>
         <FontAwesomeIcon

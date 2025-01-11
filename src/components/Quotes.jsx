@@ -13,7 +13,7 @@ function Quotes() {
   }, []);
 
   return (
-    <div>
+    <div className='quote'>
       <p className='yeseva-one-regular'>Remember: {quote}</p>
     </div>
   );

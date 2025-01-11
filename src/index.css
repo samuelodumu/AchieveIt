@@ -39,6 +39,14 @@ main hr {
   color: #feefdc;
 }
 
+.card {
+  background-color: #feefdc;
+  color: #3c3c3e;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 button {
   width: 150px;
   font-size: 22px;
@@ -82,14 +90,6 @@ button:active {
   font-size: 120px;
   font-family: monospace;
   border-radius: 10px;
-}
-
-.card {
-  background-color: #feefdc;
-  color: #3c3c3e;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 .icons {
@@ -152,7 +152,7 @@ input.bigger {
 .info-section {
   background-color: aliceblue;
   color: #212d30;
-  padding: 2rem;
+  padding: 2rem 1rem 1rem 1rem;
 }
 
 .info-section h2 {
@@ -242,8 +242,18 @@ footer small {
 }
 
 @media screen and (max-width: 450px) {
-  .outer-div {
-    padding: 0 2em;
+  .card {
+    width: 90vw;
+    padding: 1rem !important;
+  }
+  .time {
+    font-size: 90px !important;
+  }
+  button {
+    padding: 5px;
+  }
+  .icons {
+    font-size: 1.6em;
   }
   .info-section h2 {
     padding: 0 0.5rem;
@@ -252,7 +262,9 @@ footer small {
     transform: translateX(20%);
   }
   .info-section p {
-    text-align: justify;
+    padding: 0 0.5rem;
+  }
+  footer small {
     padding: 0 0.5rem;
   }
 }
