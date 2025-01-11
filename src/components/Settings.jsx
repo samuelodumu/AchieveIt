@@ -95,7 +95,9 @@ function Settings({
         <form onSubmit={handleSubmit}>
           <div className='timers d-flex'>
             <div className='form-group col-md-3'>
-              <label className='form-label'>Pomodoro:</label>
+              <label className='form-label'>
+                Pomo<span className='secondary'>doro</span>:
+              </label>
               <input
                 type='number'
                 name='pomodoro'
@@ -106,7 +108,7 @@ function Settings({
               />
             </div>
             <div className='form-group col-md-3'>
-              <label className='form-label'>Short break:</label>
+              <label className='form-label'>Short <span className='secondary'>break</span>:</label>
               <input
                 type='number'
                 name='shortBreak'
@@ -117,7 +119,7 @@ function Settings({
               />
             </div>
             <div className='form-group col-md-3'>
-              <label className='form-label'>Long break:</label>
+              <label className='form-label'>Long <span className='secondary'>break</span>:</label>
               <input
                 type='number'
                 name='longBreak'
