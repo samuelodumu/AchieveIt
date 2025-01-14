@@ -7,7 +7,8 @@ function Timer({
   durations,
   toggleSettings,
   isShadowEnabled,
-  isAutoStartEnabled
+  isAutoStartEnabled,
+  isDarkMode
 }) {
   const [activeTimer, setActiveTimer] = useState('pomodoro');
   const [timeLeft, setTimeLeft] = useState(durations['pomodoro']);
@@ -77,8 +78,8 @@ function Timer({
   };
 
   return (
-    <div className='card py-3 px-5 mt-4'>
-      <div className='d-flex justify-content-center p-3 '>
+    <div className={`card py-3 px-5 mt-4 ${isDarkMode ? 'dark-mode' : ''}`}>
+      <div className={`d-flex justify-content-center p-3 ${isDarkMode ? 'hidden' : ''}`}>
         <span
           className={`timer-option px-2 h6 ${
             activeTimer === 'pomodoro' ? 'active-timer' : ''
@@ -135,7 +136,7 @@ function Timer({
       <h1
         className='fw-bold time'
         style={{
-          textShadow: isShadowEnabled ? '10px 10px 2px #bcbcbc' : 'none'
+          textShadow: isShadowEnabled && !isDarkMode ? '10px 10px 2px #bcbcbc' : 'none'
         }}>
         {formatTime(timeLeft)}
       </h1>
@@ -149,11 +150,13 @@ function Timer({
         <FontAwesomeIcon
           icon='fa-solid fa-arrow-rotate-right'
           size='2x'
-          className='icons'
+          className={`icons ${isDarkMode ? 'dark-mode' : ''}`}
           onClick={resetTimer}
+          style={{ color: isDarkMode ? 'aliceblue' : '' }}
         />
         <button
           onClick={toggleTimer}
+          className={`${isDarkMode ? 'dark-mode' : ''}`}
           style={{
             transform: isRunning ? 'translateY(3px)' : 'none',
             boxShadow: isRunning ? '0 4px #bcbcbc' : '0 8px #bcbcbc'
@@ -163,8 +166,9 @@ function Timer({
         <FontAwesomeIcon
           icon='fa-solid fa-gear'
           size='2x'
-          className='icons'
+          className={`icons ${isDarkMode ? 'dark-mode' : ''}`}
           onClick={toggleSettings}
+          style={{ color: isDarkMode ? 'aliceblue' : '' }}
         />
       </div>
     </div>
@@ -174,7 +178,8 @@ Timer.propTypes = {
   durations: PropTypes.object.isRequired,
   toggleSettings: PropTypes.func.isRequired,
   isShadowEnabled: PropTypes.bool.isRequired,
-  isAutoStartEnabled: PropTypes.bool.isRequired
+  isAutoStartEnabled: PropTypes.bool.isRequired,
+  isDarkMode: PropTypes.bool.isRequired
 };
 
 export default Timer;

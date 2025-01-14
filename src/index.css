@@ -21,6 +21,7 @@ body {
   min-height: 100vh;
   background-color: var(--current-color);
   color: aliceblue;
+  overflow-x: hidden;
   transition: background-color 1.2s;
 }
 
@@ -45,6 +46,25 @@ main hr {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
+}
+
+.dark-mode {
+  background-color: #212d30 !important;
+  color: aliceblue !important;
+  border: none !important;
+}
+
+button.dark-mode {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.icons.dark-mode:hover {
+  color: #c8c8c8 !important;
+}
+
+.hidden {
+  display: none !important;
 }
 
 button {

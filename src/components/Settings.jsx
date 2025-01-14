@@ -8,7 +8,9 @@ function Settings({
   isShadowEnabled,
   toggleShadow,
   isAutoStartEnabled,
-  toggleAutoStart
+  toggleAutoStart,
+  isDarkMode,
+  toggleDarkMode
 }) {
   const [newDurations, setNewDurations] = useState({
     pomodoro: durations.pomodoro / 60,
@@ -18,11 +20,13 @@ function Settings({
 
   const [shadowEnabled, setShadowEnabled] = useState(isShadowEnabled);
   const [autoStartEnabled, setAutoStartEnabled] = useState(isAutoStartEnabled);
+  const [darkMode, setDarkMode] = useState(isDarkMode);
 
   useEffect(() => {
     setShadowEnabled(isShadowEnabled);
     setAutoStartEnabled(isAutoStartEnabled);
-  }, [isShadowEnabled, isAutoStartEnabled]);
+    setDarkMode(isDarkMode);
+  }, [isShadowEnabled, isAutoStartEnabled, isDarkMode]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +45,7 @@ function Settings({
     });
     toggleShadow(shadowEnabled);
     toggleAutoStart(autoStartEnabled);
+    toggleDarkMode(darkMode)
     closeSettings();
   };
 
@@ -52,6 +57,10 @@ function Settings({
     setAutoStartEnabled(e.target.checked);
   };
 
+  const handleDarkModeChange = (e) => {
+    setDarkMode(e.target.checked);
+  };
+
   const handleCancel = () => {
     // Reset the state to initial values
     setNewDurations({
@@ -61,6 +70,7 @@ function Settings({
     });
     setShadowEnabled(isShadowEnabled);
     setAutoStartEnabled(isAutoStartEnabled);
+    setDarkMode(isDarkMode);
     closeSettings();
   };
 
@@ -68,6 +78,16 @@ function Settings({
     <div className='settings-overlay'>
       <div className='settings-box'>
         <h2 className='mt-0'>Settings</h2>
+        <div className='form-check form-switch d-flex justify-content-between'>
+          <label className='form-check-label'>Dark mode</label>
+          <input
+            className='form-check-input bigger'
+            type='checkbox'
+            role='switch'
+            checked={darkMode}
+            onChange={handleDarkModeChange}
+          />
+        </div>
         <div className='form-check form-switch d-flex justify-content-between py-2'>
           <label className='form-check-label'>Timer shadow</label>
           <input
@@ -154,7 +174,9 @@ Settings.propTypes = {
   isShadowEnabled: PropTypes.bool.isRequired,
   toggleShadow: PropTypes.func.isRequired,
   isAutoStartEnabled: PropTypes.bool.isRequired,
-  toggleAutoStart: PropTypes.func.isRequired
+  toggleAutoStart: PropTypes.func.isRequired,
+  isDarkMode: PropTypes.bool.isRequired,
+  toggleDarkMode: PropTypes.func.isRequired
 };
 
 export default Settings;

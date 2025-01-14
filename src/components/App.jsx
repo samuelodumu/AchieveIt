@@ -17,6 +17,7 @@ function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [isShadowEnabled, setIsShadowEnabled] = useState(true);
   const [isAutoStartEnabled, setIsAutoStartEnabled] = useState(true);
+  const [isDarkMode, setIsdarkmode] = useState(false);
 
   const updateDurations = (newDurations) => {
     setDurations(newDurations);
@@ -34,10 +35,14 @@ function App() {
     setIsAutoStartEnabled(isEnabled);
   };
 
+  const toogleDarkMode = (isEnabled) => {
+    setIsdarkmode(isEnabled);
+  }
+
   return (
     <>
       <div className='app'>
-        <main>
+        <main className={`${isDarkMode ? 'dark-mode' : ''}`}>
           <header className='mb-5'>
             <h1 className='yeseva-one-bold display-3 mb-0'>AchieveIt</h1>
             <small className='yeseva-one-regular mt-0'>
@@ -53,6 +58,7 @@ function App() {
               toggleSettings={toggleSettings}
               isShadowEnabled={isShadowEnabled}
               isAutoStartEnabled={isAutoStartEnabled}
+              isDarkMode={isDarkMode}
             />
             {showSettings && (
               <Settings
@@ -63,6 +69,8 @@ function App() {
                 toggleShadow={toggleShadow}
                 isAutoStartEnabled={isAutoStartEnabled}
                 toggleAutoStart={toggleAutoStart}
+                isDarkMode={isDarkMode}
+                toggleDarkMode={toogleDarkMode}
               />
             )}
           </div>
