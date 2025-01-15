@@ -79,7 +79,7 @@ function App() {
           <div className='col-md-5 text-start fancy-headers'>
             <h2 className='pb-2'>About AchieveIt</h2>
             <p>
-              AchieveIt is a productivity app designed to help you manage your
+              AchieveIt is a productivity tool designed to help you manage your
               time effectively. It uses the Pomodoro technique to break your
               work into intervals, typically 25 minutes in length, separated by
               short breaks. This method helps improve focus and productivity.

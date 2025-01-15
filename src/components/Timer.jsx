@@ -14,9 +14,11 @@ function Timer({
   const [timeLeft, setTimeLeft] = useState(durations['pomodoro']);
   const [isRunning, setIsRunning] = useState(false);
   const notificationSound = useRef(new Audio('/radar.mp3'));
+  const clickSound = useRef(new Audio('/click.mp3'));
 
   useEffect(() => {
-    setTimeLeft(durations[activeTimer]); // display the new time when durations or activeTimer changes
+    // update timeLeft when the active timer or the duration of the active timer changes
+    setTimeLeft(durations[activeTimer]);
   }, [durations, activeTimer]);
 
   useEffect(() => {
@@ -28,6 +30,7 @@ function Timer({
     } else if (timeLeft === 0) {
       setIsRunning(false);
       notificationSound.current.play();
+
       if (isAutoStartEnabled) {
         setTimeout(() => {
           notificationSound.current.pause();
@@ -43,11 +46,11 @@ function Timer({
             setTimeLeft(durations['pomodoro']);
             setIsRunning(true);
           }
-        }, 500); // 500 milisecond delay between pomodoro and short break
+        }, 1000); // 1 second delay between pomodoro and short break
       }
     }
     return () => clearInterval(interval);
-  }, [isRunning, timeLeft, activeTimer, durations, isAutoStartEnabled]);
+  }, [isRunning, timeLeft, isAutoStartEnabled, activeTimer, durations]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -63,7 +66,10 @@ function Timer({
     }
   }, [activeTimer]);
 
-  const toggleTimer = () => setIsRunning(!isRunning);
+  const toggleTimer = () => {
+    setIsRunning(!isRunning);
+    clickSound.current.play();
+  };
   const resetTimer = () => {
     setTimeLeft(durations[activeTimer]);
     setIsRunning(false);
@@ -79,7 +85,10 @@ function Timer({
 
   return (
     <div className={`card py-3 px-5 mt-4 ${isDarkMode ? 'dark-mode' : ''}`}>
-      <div className={`d-flex justify-content-center p-3 ${isDarkMode ? 'hidden' : ''}`}>
+      <div
+        className={`d-flex justify-content-center p-3 ${
+          isDarkMode ? 'hidden' : ''
+        }`}>
         <span
           className={`timer-option px-2 h6 ${
             activeTimer === 'pomodoro' ? 'active-timer' : ''
@@ -136,7 +145,8 @@ function Timer({
       <h1
         className='fw-bold time'
         style={{
-          textShadow: isShadowEnabled && !isDarkMode ? '10px 10px 2px #bcbcbc' : 'none'
+          textShadow:
+            isShadowEnabled && !isDarkMode ? '10px 10px 2px #bcbcbc' : 'none'
         }}>
         {formatTime(timeLeft)}
       </h1>
@@ -152,7 +162,6 @@ function Timer({
           size='2x'
           className={`icons ${isDarkMode ? 'dark-mode' : ''}`}
           onClick={resetTimer}
-          style={{ color: isDarkMode ? 'aliceblue' : '' }}
         />
         <button
           onClick={toggleTimer}
@@ -168,7 +177,6 @@ function Timer({
           size='2x'
           className={`icons ${isDarkMode ? 'dark-mode' : ''}`}
           onClick={toggleSettings}
-          style={{ color: isDarkMode ? 'aliceblue' : '' }}
         />
       </div>
     </div>

@@ -46,16 +46,19 @@ main hr {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
+  transition: all 0.5s;
 }
 
 .dark-mode {
   background-color: #212d30 !important;
   color: aliceblue !important;
   border: none !important;
+  transition: all 0.5s;
 }
 
 button.dark-mode {
   box-shadow: none !important;
+  border: 1px solid aliceblue !important;
   transform: none !important;
 }
 
