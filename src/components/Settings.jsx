@@ -7,8 +7,10 @@ function Settings({
   closeSettings,
   isShadowEnabled,
   toggleShadow,
-  isAutoStartEnabled,
-  toggleAutoStart,
+  isAutoStartBreak,
+  toggleAutoStartBreak,
+  isAutoStartPomo,
+  toggleAutoStartPomo,
   isDarkMode,
   toggleDarkMode
 }) {
@@ -19,14 +21,16 @@ function Settings({
   });
 
   const [shadowEnabled, setShadowEnabled] = useState(isShadowEnabled);
-  const [autoStartEnabled, setAutoStartEnabled] = useState(isAutoStartEnabled);
+  const [autoStartBreak, setAutoStartBreak] = useState(isAutoStartBreak);
+  const [autoStartPomo, setAutoStartPomo] = useState(isAutoStartPomo);
   const [darkMode, setDarkMode] = useState(isDarkMode);
 
   useEffect(() => {
     setShadowEnabled(isShadowEnabled);
-    setAutoStartEnabled(isAutoStartEnabled);
+    setAutoStartBreak(isAutoStartBreak);
+    setAutoStartPomo(isAutoStartPomo);
     setDarkMode(isDarkMode);
-  }, [isShadowEnabled, isAutoStartEnabled, isDarkMode]);
+  }, [isShadowEnabled, isAutoStartBreak, isAutoStartPomo, isDarkMode]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,8 +48,9 @@ function Settings({
       longBreak: newDurations.longBreak * 60
     });
     toggleShadow(shadowEnabled);
-    toggleAutoStart(autoStartEnabled);
-    toggleDarkMode(darkMode)
+    toggleAutoStartBreak(autoStartBreak);
+    toggleAutoStartPomo(autoStartPomo);
+    toggleDarkMode(darkMode);
     closeSettings();
   };
 
@@ -53,8 +58,12 @@ function Settings({
     setShadowEnabled(e.target.checked);
   };
 
-  const handleAutoStartChange = (e) => {
-    setAutoStartEnabled(e.target.checked);
+  const handleAutoStartBreakChange = (e) => {
+    setAutoStartBreak(e.target.checked);
+  };
+
+  const handleAutoStartPomoChange = (e) => {
+    setAutoStartPomo(e.target.checked);
   };
 
   const handleDarkModeChange = (e) => {
@@ -69,7 +78,8 @@ function Settings({
       longBreak: durations.longBreak / 60
     });
     setShadowEnabled(isShadowEnabled);
-    setAutoStartEnabled(isAutoStartEnabled);
+    setAutoStartBreak(isAutoStartBreak);
+    setAutoStartPomo(isAutoStartPomo);
     setDarkMode(isDarkMode);
     closeSettings();
   };
@@ -78,7 +88,7 @@ function Settings({
     <div className='settings-overlay'>
       <div className='settings-box'>
         <h2 className='mt-0'>Settings</h2>
-        <div className='form-check form-switch d-flex justify-content-between'>
+        <div className='form-check form-switch d-flex justify-content-between py-2'>
           <label className='form-check-label'>Dark mode</label>
           <input
             className='form-check-input bigger'
@@ -98,14 +108,24 @@ function Settings({
             onChange={handleShadowChange}
           />
         </div>
-        <div className='form-check form-switch d-flex justify-content-between'>
+        <div className='form-check form-switch d-flex justify-content-between py-2'>
           <label className='form-check-label'>Auto start breaks</label>
           <input
             className='form-check-input bigger'
             type='checkbox'
             role='switch'
-            checked={autoStartEnabled}
-            onChange={handleAutoStartChange}
+            checked={autoStartBreak}
+            onChange={handleAutoStartBreakChange}
+          />
+        </div>
+        <div className='form-check form-switch d-flex justify-content-between py-2'>
+          <label className='form-check-label'>Auto start Pomodoros</label>
+          <input
+            className='form-check-input bigger'
+            type='checkbox'
+            role='switch'
+            checked={autoStartPomo}
+            onChange={handleAutoStartPomoChange}
           />
         </div>
         <div className='d-flex py-2 justify-content-center'>
@@ -128,7 +148,9 @@ function Settings({
               />
             </div>
             <div className='form-group col-md-3'>
-              <label className='form-label'>Short <span className='secondary'>break</span>:</label>
+              <label className='form-label'>
+                Short <span className='secondary'>break</span>:
+              </label>
               <input
                 type='number'
                 name='shortBreak'
@@ -139,7 +161,9 @@ function Settings({
               />
             </div>
             <div className='form-group col-md-3'>
-              <label className='form-label'>Long <span className='secondary'>break</span>:</label>
+              <label className='form-label'>
+                Long <span className='secondary'>break</span>:
+              </label>
               <input
                 type='number'
                 name='longBreak'
@@ -173,8 +197,10 @@ Settings.propTypes = {
   closeSettings: PropTypes.func.isRequired,
   isShadowEnabled: PropTypes.bool.isRequired,
   toggleShadow: PropTypes.func.isRequired,
-  isAutoStartEnabled: PropTypes.bool.isRequired,
-  toggleAutoStart: PropTypes.func.isRequired,
+  isAutoStartBreak: PropTypes.bool.isRequired,
+  toggleAutoStartBreak: PropTypes.func.isRequired,
+  isAutoStartPomo: PropTypes.bool.isRequired,
+  toggleAutoStartPomo: PropTypes.func.isRequired,
   isDarkMode: PropTypes.bool.isRequired,
   toggleDarkMode: PropTypes.func.isRequired
 };

@@ -16,7 +16,8 @@ function App() {
 
   const [showSettings, setShowSettings] = useState(false);
   const [isShadowEnabled, setIsShadowEnabled] = useState(true);
-  const [isAutoStartEnabled, setIsAutoStartEnabled] = useState(true);
+  const [isAutoStartBreak, setIsAutoStartBreak] = useState(true);
+  const [isAutoStartPomo, setIsAutoStartPomo] = useState(false);
   const [isDarkMode, setIsdarkmode] = useState(false);
 
   const updateDurations = (newDurations) => {
@@ -31,13 +32,17 @@ function App() {
     setIsShadowEnabled(isEnabled);
   };
 
-  const toggleAutoStart = (isEnabled) => {
-    setIsAutoStartEnabled(isEnabled);
+  const toggleAutoStartBreak = (isEnabled) => {
+    setIsAutoStartBreak(isEnabled);
+  };
+
+  const toggleAutoStartPomo = (isEnabled) => {
+    setIsAutoStartPomo(isEnabled);
   };
 
   const toogleDarkMode = (isEnabled) => {
     setIsdarkmode(isEnabled);
-  }
+  };
 
   return (
     <>
@@ -57,7 +62,8 @@ function App() {
               updateDurations={updateDurations}
               toggleSettings={toggleSettings}
               isShadowEnabled={isShadowEnabled}
-              isAutoStartEnabled={isAutoStartEnabled}
+              isAutoStartBreak={isAutoStartBreak}
+              isAutoStartPomo={isAutoStartPomo}
               isDarkMode={isDarkMode}
             />
             {showSettings && (
@@ -67,8 +73,10 @@ function App() {
                 closeSettings={toggleSettings}
                 isShadowEnabled={isShadowEnabled}
                 toggleShadow={toggleShadow}
-                isAutoStartEnabled={isAutoStartEnabled}
-                toggleAutoStart={toggleAutoStart}
+                isAutoStartBreak={isAutoStartBreak}
+                isAutoStartPomo={isAutoStartPomo}
+                toggleAutoStartBreak={toggleAutoStartBreak}
+                toggleAutoStartPomo={toggleAutoStartPomo}
                 isDarkMode={isDarkMode}
                 toggleDarkMode={toogleDarkMode}
               />

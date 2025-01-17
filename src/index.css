@@ -157,7 +157,7 @@ button:active {
 }
 
 input.bigger {
-  transform: scale(1.5);
+  transform: scale(1.8);
 }
 
 .form-check-input:checked {

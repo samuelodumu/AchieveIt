@@ -7,13 +7,14 @@ function Timer({
   durations,
   toggleSettings,
   isShadowEnabled,
-  isAutoStartEnabled,
+  isAutoStartBreak,
+  isAutoStartPomo,
   isDarkMode
 }) {
   const [activeTimer, setActiveTimer] = useState('pomodoro');
   const [timeLeft, setTimeLeft] = useState(durations['pomodoro']);
   const [isRunning, setIsRunning] = useState(false);
-  const notificationSound = useRef(new Audio('/radar.mp3'));
+  const notificationSound = useRef(new Audio('/kitchen-alarm.mp3'));
   const clickSound = useRef(new Audio('/click.mp3'));
 
   useEffect(() => {
@@ -23,34 +24,44 @@ function Timer({
 
   useEffect(() => {
     let interval;
+    const currentNotificationSound = notificationSound.current;
     if (isRunning && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
     } else if (timeLeft === 0) {
       setIsRunning(false);
-      notificationSound.current.play();
+      currentNotificationSound.play();
 
-      if (isAutoStartEnabled) {
+      if (isAutoStartBreak) {
         setTimeout(() => {
-          notificationSound.current.pause();
-          notificationSound.current.currentTime = 0;
-        }, 10000);
+          currentNotificationSound.pause();
+          currentNotificationSound.currentTime = 0;
+        }, 3000);
         setTimeout(() => {
           if (activeTimer === 'pomodoro') {
             setActiveTimer('shortBreak');
             setTimeLeft(durations['shortBreak']);
             setIsRunning(true);
-          } else if (activeTimer === 'shortBreak') {
+          }
+        }, 1000); // 1 second delay between pomodoro and short break
+      }
+      if (isAutoStartPomo) {
+        setTimeout(() => {
+          currentNotificationSound.pause();
+          currentNotificationSound.currentTime = 0;
+        }, 3000);
+        setTimeout(() => {
+          if (activeTimer === 'shortBreak' || activeTimer === 'longBreak') {
             setActiveTimer('pomodoro');
             setTimeLeft(durations['pomodoro']);
             setIsRunning(true);
           }
-        }, 1000); // 1 second delay between pomodoro and short break
+        }, 1000); // 1 second delay between short or long break and pomodoro
       }
     }
     return () => clearInterval(interval);
-  }, [isRunning, timeLeft, isAutoStartEnabled, activeTimer, durations]);
+  }, [isRunning, timeLeft, isAutoStartBreak, isAutoStartPomo, activeTimer, durations]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -186,7 +197,8 @@ Timer.propTypes = {
   durations: PropTypes.object.isRequired,
   toggleSettings: PropTypes.func.isRequired,
   isShadowEnabled: PropTypes.bool.isRequired,
-  isAutoStartEnabled: PropTypes.bool.isRequired,
+  isAutoStartBreak: PropTypes.bool.isRequired,
+  isAutoStartPomo: PropTypes.bool.isRequired,
   isDarkMode: PropTypes.bool.isRequired
 };
 
