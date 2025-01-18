@@ -22,7 +22,7 @@ body {
   background-color: var(--current-color);
   color: aliceblue;
   overflow-x: hidden;
-  transition: background-color 1.2s;
+  transition: background-color .8s;
 }
 
 main {
