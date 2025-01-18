@@ -61,7 +61,14 @@ function Timer({
       }
     }
     return () => clearInterval(interval);
-  }, [isRunning, timeLeft, isAutoStartBreak, isAutoStartPomo, activeTimer, durations]);
+  }, [
+    isRunning,
+    timeLeft,
+    isAutoStartBreak,
+    isAutoStartPomo,
+    activeTimer,
+    durations
+  ]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -76,6 +83,18 @@ function Timer({
       root.style.setProperty('--button-color', 'var(--long-break-color)');
     }
   }, [activeTimer]);
+
+  useEffect(() => {
+    // update the document title based on the current timer state
+    const formattedTime = formatTime(timeLeft);
+    if (activeTimer === 'pomodoro') {
+      document.title = `${formattedTime} - Focus time!`;
+    } else if (activeTimer === 'shortBreak') {
+      document.title = `${formattedTime} - Short break`;
+    } else if (activeTimer === 'longBreak') {
+      document.title = `${formattedTime} - Long break`;
+    }
+  }, [timeLeft, activeTimer]);
 
   const toggleTimer = () => {
     setIsRunning(!isRunning);
